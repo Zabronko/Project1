@@ -2,9 +2,23 @@ package com.skillstorm.ZachKelley.Beans;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity()
+@Table(name="Status")
 public class Status {
 
+	@Id
+	@Column(name="status_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int statusId;
+	
+	@Column(name="status")
 	private String status;
 	
 	public Status(int statusId, String status) {
@@ -39,21 +53,10 @@ public class Status {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(status, statusId);
+	public String toString() {
+		return "{statusId:" + statusId + ", status:" + status + "}";
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Status other = (Status) obj;
-		return Objects.equals(status, other.status) && statusId == other.statusId;
-	}
 	
 	
 }

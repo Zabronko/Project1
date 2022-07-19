@@ -9,11 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.skillstorm.ZachKelley.Beans.Expense;
+import com.skillstorm.ZachKelley.Beans.ExpenseTicket;
 import com.skillstorm.ZachKelley.Handlers.HomeHandler;
 
 @WebServlet(urlPatterns="/", loadOnStartup=1)
 public class DispatcherServlet extends HttpServlet{
+	
+	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+	Session session = sessionFactory.openSession();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +36,7 @@ public class DispatcherServlet extends HttpServlet{
 		switch(baseURI) {
 		case "home":
 			try {
-				resp.getWriter().append(new HomeHandler().returnHome());
+				resp.getWriter().append(new HomeHandler(session).returnHome());
 			} catch (ClassNotFoundException | IOException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -49,10 +58,10 @@ public class DispatcherServlet extends HttpServlet{
 		// Map to handlers
 		switch(baseURI) {
 		case "home":
-			Expense e = new Expense(req.getParameter("name"),req.getParameter("notes"));
+			ExpenseTicket e = new ExpenseTicket(req.getParameter("name"),req.getParameter("notes"));
 			System.out.println(e);
 			try {
-				resp.getWriter().append(new HomeHandler().postHome(e));
+				resp.getWriter().append(new HomeHandler(session).postHome(e));
 			} catch (ClassNotFoundException | SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -74,7 +83,7 @@ public class DispatcherServlet extends HttpServlet{
 		switch(baseURI) {
 		case "home":
 			try {
-				new HomeHandler().deleteHome(Integer.parseInt(req.getParameter("id")));
+				new HomeHandler(session).deleteHome(Integer.parseInt(req.getParameter("id")));
 			} catch (ClassNotFoundException | SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

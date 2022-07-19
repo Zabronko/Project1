@@ -1,4 +1,4 @@
-package com.skillstorm.ZachKelley.jdbc;
+package com.skillstorm.ZachKelley.DAOs;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

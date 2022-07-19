@@ -1,19 +1,23 @@
 package com.skillstorm.ZachKelley.Handlers;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+
+import org.hibernate.Session;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skillstorm.ZachKelley.Beans.Expense;
-import com.skillstorm.ZachKelley.jdbc.ExpenseDAO;
+import com.skillstorm.ZachKelley.Beans.ExpenseTicket;
+import com.skillstorm.ZachKelley.DAOs.TicketDAO;
 
 public class HomeHandler {
-	ExpenseDAO dao;
+	TicketDAO dao;
 	
-	public HomeHandler() throws ClassNotFoundException, SQLException {
-		dao = new ExpenseDAO();
+	public HomeHandler(Session session) throws ClassNotFoundException, SQLException {
+		super();
+		dao = new TicketDAO(session);
 	}
 	
 	public String returnHome() throws SQLException, ClassNotFoundException, JsonProcessingException {
@@ -22,13 +26,13 @@ public class HomeHandler {
 		return json;
 	}
 	
-	public String postHome(Expense e) throws SQLException, JsonProcessingException {
+	public String postHome(ExpenseTicket e) throws SQLException, JsonProcessingException {
 		ObjectMapper om = new ObjectMapper();
-		String json = om.writeValueAsString(dao.create(e));
+		String json = om.writeValueAsString(dao.saveTicket(e));
 		return json;
 	}
 	
 	public Boolean deleteHome(int index) throws SQLException {
-		return dao.delete(index);
+		return dao.delete(dao.findById(index));
 	}
 }

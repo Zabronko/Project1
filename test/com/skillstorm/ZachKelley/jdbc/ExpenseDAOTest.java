@@ -12,6 +12,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.skillstorm.ZachKelley.Beans.Expense;
+import com.skillstorm.ZachKelley.DAOs.ExpenseDAO;
 
 public class ExpenseDAOTest {
 	

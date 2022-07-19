@@ -12,6 +12,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.skillstorm.ZachKelley.Beans.Status;
+import com.skillstorm.ZachKelley.DAOs.StatusDAO;
 
 public class StatusDAOTest {
 

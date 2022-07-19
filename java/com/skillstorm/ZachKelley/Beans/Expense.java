@@ -1,13 +1,38 @@
 package com.skillstorm.ZachKelley.Beans;
 
-import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity()
+@Table(name="Expense")
 public class Expense {
 	
+	@Id
+	@Column(name="expense_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int expenseId;
+	
+	@Column(name="name")
 	private String name;
-	private String notes;
-	private int statusId;
+	
+	@Column(name="description")
+	private String description;
+	
+	@Column(name="cost")
+	private double cost;
+	
+	@ManyToOne()
+	@JoinColumn(name="ticket_id")
+	@JsonBackReference
+	private ExpenseTicket ticket;
 	
 	
 	
@@ -15,15 +40,15 @@ public class Expense {
 		super();
 		this.expenseId = expenseId;
 		this.name = name;
-		this.notes = notes;
-		this.statusId = statusId;
+		this.description = notes;
+		//this.status = statusId;
 	}
 
 	public Expense(String name, String notes, int statusId) {
 		super();
 		this.name = name;
-		this.notes = notes;
-		this.statusId = statusId;
+		this.description = notes;
+		//this.status = statusId;
 	}
 	
 	public Expense(String name) {
@@ -33,7 +58,7 @@ public class Expense {
 	public Expense(String name, String notes) {
 		super();
 		this.name = name;
-		this.notes = notes;
+		this.description = notes;
 	}
 	
 	public Expense() {
@@ -56,44 +81,35 @@ public class Expense {
 		this.name = name;
 	}
 
-	public String getNotes() {
-		return notes;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setNotes(String notes) {
-		this.notes = notes;
+	public void setDescription(String notes) {
+		this.description = notes;
+	}
+	
+	public double getCost() {
+		return cost;
 	}
 
-	public int getStatusId() {
-		return statusId;
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
+	public ExpenseTicket getTicket() {
+		return ticket;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(expenseId, name, notes, statusId);
+	public void setTicket(ExpenseTicket ticket) {
+		this.ticket = ticket;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Expense other = (Expense) obj;
-		return expenseId == other.expenseId && Objects.equals(name, other.name) && Objects.equals(notes, other.notes)
-				&& statusId == other.statusId;
-	}
+	
 
 	@Override
 	public String toString() {
-		return "{expenseId:" + expenseId + ", name:" + name + ", notes:" + notes + ", statusId:" + statusId
-				+ "}";
+		return "{expenseId:" + expenseId + ", name:" + name + ", description:" + description
+				+ ", cost:" + cost + "}";
 	}
 	
 }

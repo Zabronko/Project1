@@ -1,4 +1,4 @@
-package com.skillstorm.ZachKelley.jdbc;
+package com.skillstorm.ZachKelley.DAOs;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +14,9 @@ import com.skillstorm.ZachKelley.Beans.Expense;
 public class ExpenseDAO {
 	private Connection connection;
 	
+	//TODO
+	//rework
+	
 	public ExpenseDAO() throws SQLException, ClassNotFoundException {
 		super();
 		String url = "jdbc:mysql://localhost:3306/expensereimbersement";
@@ -25,10 +28,10 @@ public class ExpenseDAO {
 	
 	
 	public Expense create(Expense expense) throws SQLException {
-		String sql = "insert into expense(name, notes) values(?,?);";
+		String sql = "insert into expense(name, description) values(?,?);";
 		PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		statement.setString(1, expense.getName());
-		statement.setString(2, expense.getNotes());
+		statement.setString(2, expense.getDescription());
 		
 		statement.executeUpdate();
 		ResultSet rs = statement.getGeneratedKeys();
@@ -46,7 +49,7 @@ public class ExpenseDAO {
 		while(rs.next()) {
 			Expense row = new Expense(rs.getInt("expense_id"),
 					rs.getString("name"),
-					rs.getString("notes"),
+					rs.getString("description"),
 					rs.getInt("status_id"));
 			expenses.add(row);
 		}
@@ -62,12 +65,11 @@ public class ExpenseDAO {
 	}
 	
 	public boolean Update(Expense expense) throws SQLException {
-		String sql = "Update expense set name=?,notes=?,status_id=? where expense_id=?;";
+		String sql = "Update expense set name=?,notes=? where expense_id=?;";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, expense.getName());
-		statement.setString(2, expense.getNotes());
-		statement.setInt(3, expense.getStatusId());
-		statement.setInt(4, expense.getExpenseId());
+		statement.setString(2, expense.getDescription());
+		statement.setInt(3, expense.getExpenseId());
 		
 		return statement.executeUpdate() > 0;
 	}
