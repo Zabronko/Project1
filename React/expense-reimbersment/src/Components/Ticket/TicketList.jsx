@@ -18,18 +18,24 @@ export const TicketList = () => {
 
     return (
         <>
-            {tickets.map((ticket) => {
-                return (
-                    <>
-                        <h1>{ticket.id}</h1>
-                        {ticket.expenses.map((expense) => {
-                            return (
-                                <h2>{expense.expenseId}</h2>
-                            );
-                        })}
-                    </>
-                );
-            })}
+            <table>
+                <thead>
+                    <tr>
+                        <td>Ticket Id</td>
+                        <td>Name</td>
+                        <td>Department</td>
+                        <td>Cost</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {tickets.map((ticket) => {
+                        return (
+                            <Ticket key={ticket.id} ticket={ticket} />
+                        );
+                    })}
+                </tbody>
+            </table>
         </>
     );
 }

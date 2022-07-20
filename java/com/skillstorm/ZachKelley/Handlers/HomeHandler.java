@@ -23,6 +23,8 @@ public class HomeHandler {
 	public String returnHome() throws SQLException, ClassNotFoundException, JsonProcessingException {
 		ObjectMapper om = new ObjectMapper();
 		String json = om.writeValueAsString(dao.findAll());
+		System.out.println(json);
+		System.out.println(dao.findAll().get(0).getStatus());
 		return json;
 	}
 	

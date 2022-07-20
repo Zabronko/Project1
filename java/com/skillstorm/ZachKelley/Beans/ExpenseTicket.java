@@ -95,8 +95,15 @@ public class ExpenseTicket {
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
-
 	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
 	public Set<Expense> getExpenses() {
 		return expenses;
 	}
