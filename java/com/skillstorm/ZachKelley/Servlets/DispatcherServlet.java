@@ -13,10 +13,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.skillstorm.ZachKelley.Beans.Expense;
 import com.skillstorm.ZachKelley.Beans.ExpenseTicket;
 import com.skillstorm.ZachKelley.Handlers.HomeHandler;
+import com.skillstorm.ZachKelley.Handlers.TicketHandler;
 
 @WebServlet(urlPatterns="/", loadOnStartup=1)
 public class DispatcherServlet extends HttpServlet{
@@ -37,6 +36,14 @@ public class DispatcherServlet extends HttpServlet{
 		case "home":
 			try {
 				resp.getWriter().append(new HomeHandler(session).returnHome());
+			} catch (ClassNotFoundException | IOException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Ticket":
+			try {
+				resp.getWriter().append(new TicketHandler(session).returnHome(req));
 			} catch (ClassNotFoundException | IOException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -5,8 +5,79 @@ th, td {
   border: 2px solid black;
 }
 
-table {
-  margin: 10px;
+.TicketTable {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 5px;
+  margin-bottom: 5px;
   border-collapse: collapse;
   border: 2px solid black;
+  min-width: 90%;
+}
+
+.TicketBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: lightgrey;
+  margin-left: 20%;
+  margin-right: 20%;
+  min-width: 60%;
+  border: 2px solid black;
+}
+
+.Ticket100Section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: lightgrey;
+  min-width: 100%;
+}
+
+.Ticket50Section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: lightgrey;
+  min-width: 50%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: gray;
+  padding: 15px 5px;
+}
+
+.nav-section {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nav-item {
+  font-size: 32px;
+  margin: 0px 10px;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.nav-item:hover {
+  color: rgb(163, 158, 158);
+}
+
+.ticketRow {
+  text-decoration: none;
+  color: black;
+}
+
+.OverviewTitle {
+  text-align: center;
+  min-width: 100%;
+}
+
+.OverviewItem {
+  margin-left: 10px;
+  margin-right: 10px;
 }

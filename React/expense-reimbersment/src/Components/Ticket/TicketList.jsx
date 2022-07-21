@@ -7,6 +7,7 @@ export const TicketList = () => {
 
     const result = Array.isArray(tickets) ? tickets.map(element => element + 1) : [];
     console.log(result);
+
     useEffect(() => {
         axios.get('http://localhost:8080/Project1/home')
             .then(res => setTickets(res.data));
@@ -15,27 +16,28 @@ export const TicketList = () => {
 
     console.log(tickets);
 
-
     return (
         <>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Ticket Id</td>
-                        <td>Name</td>
-                        <td>Department</td>
-                        <td>Cost</td>
-                        <td>Status</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tickets.map((ticket) => {
-                        return (
-                            <Ticket key={ticket.id} ticket={ticket} />
-                        );
-                    })}
-                </tbody>
-            </table>
+            <section className='TicketBox'>
+                <table className='TicketTable'>
+                    <thead>
+                        <tr>
+                            <th>Ticket Id</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Cost</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tickets.map((ticket) => {
+                            return (
+                                <Ticket key={ticket.id} ticket={ticket} />
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </section>
         </>
     );
 }

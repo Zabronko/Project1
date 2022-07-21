@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 export const Ticket = ({ ticket, expenses }) => {
 
-    const [status, setStatus] = useState(ticket.status.statusId === 1 ? 'yellow' : ticket.status.statusId === 2 ? 'green':'red');
-    
+    const status = ticket.status.statusId === 1 ? 'yellow' : ticket.status.statusId === 2 ? 'green' : 'red';
+    const history = useNavigate();
+
+    const handleClick = () => {
+        history(`./${ticket.id}`)
+    }
 
     return (
         <>
-            <tr style={{backgroundColor: status}}>
+            <tr style={{ backgroundColor: status }} onClick={handleClick} >
                 <td>{ticket.id}</td>
                 <td>{ticket.name}</td>
                 <td>{ticket.department}</td>
