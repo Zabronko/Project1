@@ -8,7 +8,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.skillstorm.ZachKelley.Beans.ExpenseTicket;
@@ -32,16 +31,6 @@ public class TicketDAO {
 		Query q = session.createQuery(hql);
 		q.setString("search", "%"+like+"%");
 		return q.list();
-	}
-	
-	public List<ExpenseTicket> findBySort(String sort, String order) {
-		Criteria criteria = session.createCriteria(ExpenseTicket.class);
-		if(order.equals("asc")) {
-			criteria.addOrder(Order.asc(sort));
-		}else {
-			criteria.addOrder(Order.desc(sort));
-		}
-		return criteria.list(); //criteria.uniqueResult();
 	}
 	
 	public List<ExpenseTicket> findByNameCriteria(String like) {

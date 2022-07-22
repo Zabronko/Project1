@@ -1,11 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Ticket } from './Ticket';
 
 export const TicketList = () => {
     const [tickets, setTickets] = useState([]);
-    const currSortRef = useRef();
-    const orderRef = useRef();
 
     const result = Array.isArray(tickets) ? tickets.map(element => element + 1) : [];
     console.log(result);
@@ -16,35 +14,7 @@ export const TicketList = () => {
         //sets my devs state to be that array of devs
     }, []); //be sure this is an empty array
 
-    const sort = async (sort) => {
-        if (currSortRef.current === sort) {
-            if (orderRef.current === "asc") {
-                orderRef.current = "desc";
-            } else {
-                orderRef.current = "asc";
-            }
-            axios.get(`http://localhost:8080/Project1/sort?sort=${sort}&order=${orderRef.current}`)
-                .then(res => setTickets(res.data));
-            currSortRef.current = sort;
-        } else {
-            orderRef.current = "asc"
-            axios.get(`http://localhost:8080/Project1/sort?sort=${sort}&order=${orderRef.current}`)
-                .then(res => setTickets(res.data));
-            currSortRef.current = sort;
-        }
-    }
-
-    const getArrow = (sort) => {
-        if(currSortRef.current === sort){
-            if (orderRef.current === 'asc') {
-                return '↑';
-            } else {
-                return '↓';
-            }
-        }else {
-            return '-';
-        }
-    }
+    console.log(tickets);
 
     return (
         <section className='SectionContainer'>
@@ -53,11 +23,11 @@ export const TicketList = () => {
                 <table className='TicketTable'>
                     <thead>
                         <tr>
-                            <th onClick={() => sort('id')}>Ticket Id{getArrow('id')}</th>
-                            <th onClick={() => sort('name')}>Name{getArrow('name')}</th>
-                            <th onClick={() => sort('department')}>Department{getArrow('department')}</th>
-                            <th onClick={() => sort('totalCost')}>Cost{getArrow('totalCost')}</th>
-                            <th onClick={() => sort('status')}>Status{getArrow('status')}</th>
+                            <th>Ticket Id</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Cost</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
