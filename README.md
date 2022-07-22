@@ -1,3 +1,13 @@
+----------runnning frontend-----------------
+1. in react folder run the following commands
+
+            npm install
+            npm start
+            
+----------Running backend-----------------
+1. hook maven project to tomcat server
+2. run tomcat server
+
 ----------UI Help------------------
 1. pages can be navigated using the navigation bar or links on home page
 
