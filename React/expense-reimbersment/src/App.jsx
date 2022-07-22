@@ -11,7 +11,7 @@ import { NewTicket } from './Components/Ticket/NewTicket';
 
 export const App = () => {
   return (
-    <section style={{ justifyContent: "center" }}>
+    <>
       <BrowserRouter>
         <Navigation>
           <section className='nav-section'>
@@ -39,6 +39,6 @@ export const App = () => {
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
-    </section>
+      </>
   );
 }

@@ -8,17 +8,17 @@ import background from './images/backgroundimg.jpg'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-    <div style={{ backgroundImage: `url(${background})`, backgroundAttachment: 'fixed', backgroundSize: "100%,100%", height:"90vh" }}>
+    <section style={{ backgroundImage: `url(${background})`, backgroundAttachment: 'fixed', backgroundSize: "100%,100%", minHeight: "85vh" }}>
       <App />
-    </div>
-    <footer style={{height:"10vh", justifyContent:"center"}}>
-      <h2 style={{textAlign:"center", margin:"0px"}}>MegaTech</h2>
-      <section style={{display:'grid', gridAutoFlow: 'column', margin:"0px", justifyContent:"center"}}>
-        <p style={{marginLeft:"0px",fontSize:"20px"}} onClick={event =>  window.location.href='/error'} className='noDec'>Error Page</p>
-        <p style={{fontSize:"20px"}} onClick={event =>  window.location.href='/info'} className='noDec'>Info</p>
+    </section>
+    <section style={{ backgroundColor: "white", justifyContent: "center", position: 'absoulute', left: 0, right: 0,bottom:0, marginLeft: "10%", width: "80%" }}>
+      <h2 style={{ textAlign: "center", margin: "0px" }}>MegaTech</h2>
+      <section style={{ display: 'grid', gridAutoFlow: 'column', margin: "0px", justifyContent: "center" }}>
+        <p style={{ marginLeft: "0px", fontSize: "20px" }} onClick={event => window.location.href = '/error'} className='noDec'>Error Page</p>
+        <p style={{ fontSize: "20px" }} onClick={event => window.location.href = '/info'} className='noDec'>Info</p>
       </section>
-      <p style={{textAlign:"center", margin:"0px"}}>© 2022 MegaTech. All Rights Reserved.</p>
-    </footer>
+      <p style={{ textAlign: "center", margin: "0px" }}>© 2022 MegaTech. All Rights Reserved.</p>
+    </section>
   </>
 );
 
