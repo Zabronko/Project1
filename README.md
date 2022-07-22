@@ -1,15 +1,25 @@
+----------clone repository------------------
+
+       git clone https://github.com/Zabronko/Project1.git
+
 ----------runnning frontend-----------------
 1. in react folder run the following commands
 
-            npm install
-            npm start
+       npm install
+       npm start
             
 ----------Running backend-----------------
-1. hook maven project to tomcat server
-2. run tomcat server
+     
+     
+   1. hook maven project to tomcat server
+   2. run tomcat server
+
 
 ----------UI Help------------------
-1. pages can be navigated using the navigation bar or links on home page
+
+
+   1. pages can be navigated using the navigation bar or links on home page
+
 
 ----------tickets page----------------------
 1. to sort tickets click on table headers to sort assending and descending
