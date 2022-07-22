@@ -17,8 +17,9 @@ export const TicketList = () => {
     console.log(tickets);
 
     return (
-        <>
+        <section className='SectionContainer'>
             <section className='TicketBox'>
+                <h1 style={{ fontSize: "24px" }}>Tickets</h1>
                 <table className='TicketTable'>
                     <thead>
                         <tr>
@@ -27,17 +28,19 @@ export const TicketList = () => {
                             <th>Department</th>
                             <th>Cost</th>
                             <th>Status</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {tickets.map((ticket) => {
                             return (
-                                <Ticket key={ticket.id} ticket={ticket} />
+                                <Ticket key={ticket.id} tickets={tickets} setTickets={setTickets} ticket={ticket} />
                             );
                         })}
+
                     </tbody>
                 </table>
             </section>
-        </>
+        </section>
     );
 }

@@ -57,9 +57,10 @@ public class TicketDAO {
 		return true;
 	}
 	
-	public void update(ExpenseTicket ticket) {
+	public ExpenseTicket update(ExpenseTicket ticket) {
 		Transaction tx = session.beginTransaction();
 		session.update(ticket);
 		tx.commit();
+		return ticket;
 	}
 }

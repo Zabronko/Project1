@@ -2,6 +2,7 @@ package com.skillstorm.ZachKelley.Beans;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,11 +37,11 @@ public class ExpenseTicket {
 	@Column(name="total_cost")
 	private double totalCost;
 	
-	@OneToMany(mappedBy="ticket", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="ticket", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE, CascadeType.REFRESH})
 	@JsonManagedReference
 	private Set<Expense> expenses;
 	
-	@OneToOne()
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="status_id")
 	private Status status;
 	
@@ -54,7 +55,7 @@ public class ExpenseTicket {
 		this.notes = notes;
 	}
 
-
+	
 
 	public int getId() {
 		return id;

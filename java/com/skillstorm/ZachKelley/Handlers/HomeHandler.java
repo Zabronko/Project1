@@ -1,9 +1,7 @@
 package com.skillstorm.ZachKelley.Handlers;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.hibernate.Session;
 
@@ -23,8 +21,6 @@ public class HomeHandler {
 	public String returnHome() throws SQLException, ClassNotFoundException, JsonProcessingException {
 		ObjectMapper om = new ObjectMapper();
 		String json = om.writeValueAsString(dao.findAll());
-		System.out.println(json);
-		System.out.println(dao.findAll().get(0).getStatus());
 		return json;
 	}
 	

@@ -1,5 +1,6 @@
 package com.skillstorm.ZachKelley.Beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,36 +30,22 @@ public class Expense {
 	@Column(name="cost")
 	private double cost;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinColumn(name="ticket_id")
 	@JsonBackReference
 	private ExpenseTicket ticket;
 	
 	
-	
-	public Expense(int expenseId, String name, String notes, int statusId) {
-		super();
-		this.expenseId = expenseId;
-		this.name = name;
-		this.description = notes;
-		//this.status = statusId;
-	}
-
-	public Expense(String name, String notes, int statusId) {
+	public Expense(String name, String desc, double cost) {
 		super();
 		this.name = name;
-		this.description = notes;
-		//this.status = statusId;
+		this.description = desc;
+		this.cost = cost;
 	}
 	
 	public Expense(String name) {
 		super();
 		this.name = name;
-	}
-	public Expense(String name, String notes) {
-		super();
-		this.name = name;
-		this.description = notes;
 	}
 	
 	public Expense() {

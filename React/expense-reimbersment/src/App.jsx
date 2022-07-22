@@ -6,6 +6,7 @@ import { TicketList } from './Components/Ticket/TicketList'
 import { Error} from './pages/Error'
 import { Home } from './pages/Home';
 import { TicketOverview } from './Components/Ticket/TicketOverview';
+import { NewTicket } from './Components/Ticket/NewTicket';
 
 export const App = () => {
   return (
@@ -19,6 +20,9 @@ export const App = () => {
             <div className='nav-item'>
               <Link className="nav-item" to="/Tickets">Tickets</Link>
             </div>
+            <div className='nav-item'>
+              <Link className="nav-item" style={{fontSize: '24px'}} to="/newTicket">Create New Ticket</Link>
+            </div>
           </section>
           <section className='nav-section'>
             <div className='nav-item'>Sign In</div>
@@ -29,6 +33,7 @@ export const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/Tickets" element={<TicketList />} />
           <Route path="/Tickets/*" element={<TicketOverview/>} />
+          <Route path="/newTicket" element={<NewTicket/>} />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

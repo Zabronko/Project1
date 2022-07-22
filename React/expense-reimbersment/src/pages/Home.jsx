@@ -1,5 +1,9 @@
+import background from './../images/backgroundimg.jpg'
 export const Home = () => {
+    console.log(background);
     return (
-        <h1>Home!</h1>
-    )
+        <section style={{height: '100%', justifyContent:'center'}}>
+            <h1 style={{textAlign:'center'}}>Home!</h1>
+        </section>
+    );
 }
