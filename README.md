@@ -1,27 +1,26 @@
-----------clone repository------------------
+CLONE REPOSITORY
 
        git clone https://github.com/Zabronko/Project1.git
 
-----------runnning frontend-----------------
+RUNNING FRONTEND
 1. in react folder run the following commands
 
        npm install
        npm start
             
-----------Running backend-----------------
+RUNNING BACKEND
      
      
    1. hook maven project to tomcat server
    2. run tomcat server
 
 
-----------UI Help------------------
-
+UI HELP
 
    1. pages can be navigated using the navigation bar or links on home page
 
+TICKETS PAGE
 
-----------tickets page----------------------
 1. to sort tickets click on table headers to sort assending and descending
 2. to access a ticket click on the corresponding table row
 3. approving or denying can be done by a click of a button
@@ -30,7 +29,8 @@
  
 4. can delete any approved or denied request
 
-------------ticket overwiew page--------------
+TICKET OVERVIEW PAGE
+
 1. click edit to edit the ticket
 2. to save each expense after change click the check mark
 3. delete un needed expenses with the trash can
@@ -41,6 +41,7 @@
       
       -total cost will be updated as necessary
 
---------------create new ticket page--------------
+CREATE NEW TICKET PAGE
+
 1. fill out the fields and click submit to add a new ticket
 2. any unfilled fields can be re-edited in the ticket overview page for that ticket
