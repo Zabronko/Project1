@@ -1,6 +1,6 @@
-import background from './../images/backgroundimg.jpg'
+
 export const Home = () => {
-    console.log(background);
+
     return (
         <section className='SectionContainer'>
         <section style={{height: '100%', justifyContent:'center'}}>
