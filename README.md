@@ -5,7 +5,9 @@
 1. to sort tickets click on table headers to sort assending and descending
 2. to access a ticket click on the corresponding table row
 3. approving or denying can be done by a click of a button
-  ----can only approve or deny pending request
+
+      can only approve or deny pending request
+ 
 4. can delete any approved or denied request
 
 ------------ticket overwiew page--------------
@@ -14,8 +16,9 @@
 3. delete un needed expenses with the trash can
 4. fill out the field and click the save button to add a new expense to the ticket
 5. click submit to save all changed
-  ----any unchanged fields will be saved as they were
-  ----total cost will be updated as necessary
+
+      any unchanged fields will be saved as they were
+      total cost will be updated as necessary
 
 --------------create new ticket page--------------
 1. fill out the fields and click submit to add a new ticket
