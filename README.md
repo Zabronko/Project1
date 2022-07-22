@@ -1,6 +1,11 @@
 CLONE REPOSITORY
 
        git clone https://github.com/Zabronko/Project1.git
+       
+SQL DATABASE
+
+1. .sql file found int Project1/recources
+2. run .sql file in SQL workbench to create schema
 
 RUNNING FRONTEND
 1. in react folder run the following commands
