@@ -8,9 +8,17 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.skillstorm.ZachKelley.Beans.ExpenseTicket;
+
+/**
+ * @author zachk
+ * 
+ * This program handles sql request to the expenseticket database in sql using hibernate
+ *
+ */
 
 public class TicketDAO {
 
@@ -36,6 +44,16 @@ public class TicketDAO {
 	public List<ExpenseTicket> findByNameCriteria(String like) {
 		Criteria criteria = session.createCriteria(ExpenseTicket.class);
 		criteria.add(Restrictions.like("name", "%"+like+"%"));
+		return criteria.list(); //criteria.uniqueResult();
+	}
+	
+	public List<ExpenseTicket> findBySort(String sort, String order) {
+		Criteria criteria = session.createCriteria(ExpenseTicket.class);
+		if(order.equals("asc")) {
+			criteria.addOrder(Order.asc(sort));
+		}else {
+			criteria.addOrder(Order.desc(sort));
+		}
 		return criteria.list(); //criteria.uniqueResult();
 	}
 	

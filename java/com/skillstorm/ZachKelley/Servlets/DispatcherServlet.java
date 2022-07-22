@@ -18,8 +18,16 @@ import com.skillstorm.ZachKelley.Beans.ExpenseTicket;
 import com.skillstorm.ZachKelley.Handlers.ExpenseHandler;
 import com.skillstorm.ZachKelley.Handlers.HomeHandler;
 import com.skillstorm.ZachKelley.Handlers.NewTicketHandler;
+import com.skillstorm.ZachKelley.Handlers.SortHandler;
 import com.skillstorm.ZachKelley.Handlers.TicketHandler;
 import com.skillstorm.ZachKelley.Handlers.TicketsHandler;
+
+/**
+ * @author zachk
+ *
+ * This program handles all incoming http request and passes them to their respected handlers
+ *
+ */
 
 @WebServlet(urlPatterns="/", loadOnStartup=1)
 public class DispatcherServlet extends HttpServlet{
@@ -48,6 +56,14 @@ public class DispatcherServlet extends HttpServlet{
 		case "Tickets":
 			try {
 				resp.getWriter().append(new TicketsHandler(session).returnTicket(req));
+			} catch (ClassNotFoundException | IOException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "sort":
+			try {
+				resp.getWriter().append(new SortHandler(session).returnSort(req.getParameter("sort"),req.getParameter("order")));
 			} catch (ClassNotFoundException | IOException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
