@@ -41,7 +41,6 @@ CREATE TABLE IF NOT EXISTS `expensereimbersement`.`expenseticket` (
   `total_cost` DOUBLE NULL DEFAULT '0',
   `status_id` INT NOT NULL DEFAULT '1',
   PRIMARY KEY (`ticket_id`),
-  INDEX `status_id_idx` (`status_id` ASC),
   CONSTRAINT `status_id`
     FOREIGN KEY (`status_id`)
     REFERENCES `expensereimbersement`.`status` (`status_id`))
@@ -49,6 +48,8 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 391
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE INDEX `status_id_idx` ON `expensereimbersement`.`expenseticket` (`status_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -61,7 +62,6 @@ CREATE TABLE IF NOT EXISTS `expensereimbersement`.`expense` (
   `cost` DOUBLE NOT NULL,
   `ticket_id` INT NOT NULL,
   PRIMARY KEY (`expense_id`),
-  INDEX `ticket_id_idx` (`ticket_id` ASC),
   CONSTRAINT `FK_ticket_id`
     FOREIGN KEY (`ticket_id`)
     REFERENCES `expensereimbersement`.`expenseticket` (`ticket_id`))
@@ -69,6 +69,40 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 44
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE INDEX `ticket_id_idx` ON `expensereimbersement`.`expense` (`ticket_id` ASC) VISIBLE;
+
+
+-- -----------------------------------------------------
+-- Data for table `expensereimbersement`.`status`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `expensereimbersement`;
+INSERT INTO `expensereimbersement`.`status` (`status_id`, `status`) VALUES (1, 'pending');
+INSERT INTO `expensereimbersement`.`status` (`status_id`, `status`) VALUES (2, 'approved');
+INSERT INTO `expensereimbersement`.`status` (`status_id`, `status`) VALUES (3, 'denied');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `expensereimbersement`.`expenseticket`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `expensereimbersement`;
+INSERT INTO `expensereimbersement`.`expenseticket` (`ticket_id`, `name`, `department`, `notes`, `total_cost`, `status_id`) VALUES (1, 'bob', 'sales', NULL, 22.44, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `expensereimbersement`.`expense`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `expensereimbersement`;
+INSERT INTO `expensereimbersement`.`expense` (`expense_id`, `name`, `description`, `cost`, `ticket_id`) VALUES (1, 'bob', NULL, 22.44, 1);
+
+COMMIT;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
